@@ -1,0 +1,64 @@
+#[PCCE 기출문제] 7번 / 버스 (https://school.programmers.co.kr/learn/courses/30/lessons/340201)
+
+def func1(num):
+    if 0 > num:
+        return 0
+    else:
+        return num
+
+def func2(num):
+    if num > 0:
+        return 0
+    else:
+        return num
+
+def func3(station):
+    num = 0
+    for people in station:
+        if people == "Off":
+            num += 1
+    return num
+
+def func4(station):
+    num = 0
+    for people in station:
+        if people == "On":
+            num += 1
+    return num
+
+
+def solution(seat, passengers):
+    num_passenger = 0
+    for station in passengers:
+        num_passenger += func4(station)
+        num_passenger -= func3(station)
+    answer = func1(seat - num_passenger)
+    return answer
+
+print(solution(5, [["On", "On", "On"], ["Off", "On", "-"], ["Off", "-", "-"]]))
+print(solution(10,	[["On", "On", "On", "On", "On", "On", "On", "On", "-", "-"], ["On", "On", "Off", "Off", "Off", "On", "On", "-", "-", "-"], ["On", "On", "On", "Off", "On", "On", "On", "Off", "Off", "Off"], ["On", "On", "Off", "-", "-", "-", "-", "-", "-", "-"]]))
+
+
+#[PCCE 기출문제] 8번 / 닉네임 규칙 (https://school.programmers.co.kr/learn/courses/30/lessons/340200)
+
+def solution(nickname):
+    answer = ""
+    for letter in nickname:
+        if letter == "l":
+            answer += "I"
+        elif letter == "w":
+            answer += "vv"
+        elif letter == "W":
+            answer += "VV"
+        elif letter == "O":
+            answer += "0"
+        else:
+            answer += letter
+    while len(answer) < 4:
+        answer += "o"
+    if len(answer) > 8:
+        answer = answer[:8]
+    return answer
+
+print(solution("WORLDworld"))
+print(solution("GO"))
