@@ -1,0 +1,35 @@
+#코딩테스트 연습 > 연습문제 > 무인도 여행 (https://school.programmers.co.kr/learn/courses/30/lessons/154540)
+
+def solution(maps):
+  answer = []
+  directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+  maps = [i.replace('X', '0') for i in maps]
+  maps = [[int(box)for box in row] for row in maps]
+  for r in range(len(maps)): 
+    for b in range(len(maps[r])):
+      if maps[r][b] > 0:
+          stack = [(r, b)]
+          island_sum = maps[r][b]
+          maps[r][b] = 0
+          while stack:
+            curr_r, curr_b = stack.pop()
+            for dr, db in directions:
+              nr = curr_r + dr
+              nb = curr_b + db
+              if nr >= 0 and nr < len(maps):
+                if nb >= 0 and nb < len(maps[nr]):
+                  if maps[nr][nb] > 0:
+                    island_sum += maps[nr][nb]
+                    maps[nr][nb] = 0
+                    stack.append([nr, nb])
+          print(f"Island finished! Total food: {island_sum}")
+          answer.append(island_sum)
+    answer.sort()
+  return answer if answer else [-1]
+
+
+maps = ["X591X","X1X5X","X231X", "1XXX1"]	#[1, 1, 27]
+print(solution(maps))
+
+maps = ["XXX","XXX","XXX"] #[-1]
+print(solution(maps))
