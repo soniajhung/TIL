@@ -1,0 +1,16 @@
+#코딩테스트 연습 > 2017 팁스타운 > 예상 대진표 (https://school.programmers.co.kr/learn/courses/30/lessons/12985?language=python3)
+
+def solution(N, A, B):
+  tournament_round = 0
+  nr_A = A
+  nr_B = B
+  while nr_A != nr_B:
+    nr_A = (nr_A + 1) // 2
+    nr_B = (nr_B + 1) // 2
+    tournament_round += 1
+  return tournament_round
+
+N = 52
+A = 18
+B = 52
+print(solution(N, A, B)) #3
